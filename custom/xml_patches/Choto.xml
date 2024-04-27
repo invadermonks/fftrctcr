@@ -894,4 +894,14 @@ F9FF2015
       00000000
     </Location>
   </Patch>
+  <Patch name="Disable Br Fa leaving warning">
+    <Location file="EVENT_REQUIRE_OUT" offset="50f4">
+      A0000010
+      00000000
+    </Location>
+    <Location file="EVENT_REQUIRE_OUT" offset="5488">
+      A0000010
+      00000000
+    </Location>
+  </Patch>
 </Patches>

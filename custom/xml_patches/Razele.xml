@@ -746,7 +746,7 @@
     </Location>
   </Patch>
 
-  <Patch name="Secret Hunt ability isn't needed to enter Fur Shop">
+  <Patch name="Secret Hunt ability not needed to enter Fur Shop">
     <Location file="WORLD_WORLD_BIN" offset="57166">20</Location>
   </Patch>
 
@@ -1351,6 +1351,17 @@
       1980033C
       902D638C
       A3280608
+      00000000
+    </Location>
+  </Patch>
+  <Patch name="All monsters can use Monster Skill moves">
+    <Location file="BATTLE_BIN" offset="11B634">01000234</Location>
+    <Location file="BATTLE_BIN" offset="133960">
+      00000000
+      00000000
+      00000000
+      00000000
+      00000000
       00000000
     </Location>
   </Patch>

@@ -25,7 +25,7 @@ from traceback import format_exc
 import re
 
 
-VERSION = '4'
+VERSION = '4.01i'
 ALL_OBJECTS = None
 DEBUG = environ.get('DEBUG')
 
@@ -162,13 +162,11 @@ class AbilityObject(TableObject):
         return self.index in self.MP_RESTORE_INNATES
 
     def cleanup(self):
-        if self.jp_cost == 0 and not self.get_bit('no_learn_with_jp'):
-            ratio = (random.random() +
-                     random.random() + random.random()) / 3
-            self.jp_cost = ratio * 9999
+        self.set_bit('no_learn_with_jp', False)
+        self.jp_cost = random.random() * 4000
         self.jp_cost = int(round(self.jp_cost, -1))
-        if self.jp_cost >= 10000:
-            self.jp_cost = 9999
+        if self.jp_cost >= 3000:
+            self.jp_cost = 3000
 
 
 class AbilityAttributesObject(MutateBoostMixin):
@@ -277,8 +275,9 @@ class JobObject(TableObject):
     ALTIMA_PERFECT_BODY = 0x49
 
     VALID_INNATE_STATUSES = 0xc2fcc12a10
-    VALID_START_STATUSES = (VALID_INNATE_STATUSES |
+    VALID_INFLICT_STATUSES = (VALID_INNATE_STATUSES |
                             0x1c02300000)
+    VALID_START_STATUSES =  VALID_INNATE_STATUSES
     BENEFICIAL_STATUSES =   0xc278600000
     RERAISE_STATUS =        0x0000200000
     FAITH_STATUS =          0x8000000000
@@ -395,23 +394,19 @@ class JobObject(TableObject):
         s += ('| {0:3} | {1:5} | {2:5} |\n'.format('', 'BASE', 'GROW'))
         s += ('|-----+-------+-------|\n')
         stats = ['hp', 'mp', 'pa', 'ma', 'spd']
+        # Iterating over each stat (hp, mp, pa, ma, spd)
         for stat in stats:
-            mult_attr = '{0}mult'.format(stat)
-            grow_attr = '{0}growth'.format(stat)
+        # Creating attribute names for multiplier and growth rate
+            mult_attr = '{0}mult'.format(stat)  # e.g., 'hp' -> 'hpmult'
+            grow_attr = '{0}growth'.format(stat)  # e.g., 'hp' -> 'hpgrowth'
 
-            f = lambda j: getattr(j, mult_attr)
-            g = lambda j: 255 - getattr(j, grow_attr)
+            # Getting multiplier and growth rate attributes from job objects
+            mult_value = getattr(self, mult_attr)  # Multiplier attribute value for current job object
+            grow_value = getattr(self, grow_attr)  # Growth rate attribute value for current job object
 
-            mult_index = sorted(
-                generics, key=lambda j: (f(j), g(j))).index(self)
-            mult_rank = int(round((4*mult_index / float(len(generics)-1)))) + 1
-            assert 1 <= mult_rank <= 5
-            grow_index = sorted(
-                generics, key=lambda j: (g(j), f(j))).index(self)
-            grow_rank = int(round((4*grow_index / float(len(generics)-1)))) + 1
-            assert 1 <= grow_rank <= 5
-            s += '| {0:>3} | {1:5} | {2:5} |\n'.format(
-                stat.upper(), '*'*mult_rank, '*'*grow_rank)
+            # Constructing a table row for the current stat, showing raw multiplier and growth rate values
+            s += '| {0:>3} | {1:<5} | {2:<5} |\n'.format(
+                stat.upper(), mult_value, grow_value)
         s += '\\=====================/\n'
 
         return s.strip()
@@ -1184,7 +1179,7 @@ class InflictStatusObject(TableObject):
             toinflict = 0
             while True:
                 bit = (1 << random.randint(0, 39))
-                if not bit & JobObject.VALID_START_STATUSES:
+                if not bit & JobObject.VALID_INFLICT_STATUSES:
                     continue
                 toinflict |= bit
                 if (toinflict and
@@ -1508,7 +1503,7 @@ class SkillsetObject(TableObject):
                 if (rsm in AbilityObject.DUMMIED_ABILITIES
                         and is_generic(chosen)):
                     seed = str(get_seed())
-                    if not ('420' in seed and '69' in seed):
+                    if not ('420' in seed or '69' in seed or '77' in seed):
                         you_get_one = True
                 break
 
@@ -5659,6 +5654,9 @@ class UnitObject(TableObject):
             assert (0 <= self.unlocked <=
                     JobObject.MIME_INDEX - JobObject.SQUIRE_INDEX)
 
+        if (self.get_bit('always_present')):
+            self.set_bit('randomly_present', False)
+
         if (self.character_name == 'Alma'
                 and self.graphic == self.old_data['graphic']):
             altima = [u for u in ENTDObject.get(ENTDObject.FINAL_BATTLE).units
@@ -6831,6 +6829,13 @@ def write_spoiler(all_objects):
 
     for p in PoachObject.every:
         f.write(str(p) + '\n')
+
+    f.write('Map  : (x , y) : [common , rare]\n') 
+    for mf in MoveFindObject.every:
+        if mf.map is not None:
+            f.write('Map ' + names.maps[mf.map.map_index] + ' : ') 
+            f.write('(' + str(mf.x) + ',' + str(mf.y) + ') : ')
+            f.write('[ ' + names.items[mf.common] + ' , ' + names.items[mf.rare] + ' ]\n')
 
     f.close()
 

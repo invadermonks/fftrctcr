@@ -1,0 +1,6 @@
+fftr_spoiler*
+*.bin
+*.cue
+build/
+dist/
+_temp/

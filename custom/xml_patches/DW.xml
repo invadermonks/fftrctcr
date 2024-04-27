@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patches>
+  <Patch name="AI becomes not dumb with protect shell">
+    <Description>AI will now use these statuses only if GREATER than 50% HP.</Description>
+    <Location file="BATTLE_BIN" offset="137CD4">
+      01004230
+      03004010
+    </Location>
+  </Patch>
+
+  <Patch name="AI Throw Item Fix">
+    <Description>AI correctly sees throw item as 4 range.</Description>
+    <Location file="BATTLE_BIN" offset="12E9FC">
+      04000234
+    </Location>
+  </Patch>
+</Patches>

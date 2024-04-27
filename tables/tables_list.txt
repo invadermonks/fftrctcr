@@ -45,6 +45,7 @@ SpriteMetaObject            struct_sprite_meta.txt          2d748@BATTLE.BIN    
 SpriteImageObject           empty.txt                       pointers_sprite_images.txt
 $characters             names_characters.txt
 $items                  names_items.txt
+$maps                   names_maps.txt
 $monsters               names_monsters.txt
 $formfaces              names_formfaces.txt
 $formsprites            names_formsprites.txt

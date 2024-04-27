@@ -1,0 +1,8 @@
+* text=auto eol=lf
+
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.com text eol=crlf
+*.ini text eol=crlf
+.gitattributes export-ignore
+.gitignore export-ignore

@@ -1,0 +1,127 @@
+000	???
+001	At Main Gate of Igros Castle
+002	Back Gate of Lesalia Castle
+003	Hall of St. Murond Temple
+004	Office of Lesalia Castle
+005	Roof of Riovanes Castle
+006	At the Gate of Riovanes Castle
+007	Inside of Riovanes Castle
+008	Riovanes Castle
+009	Citadel of Igros Castle
+010	Inside of Igros Castle
+011	Office of Igros Castle
+012	At the Gate of Lionel Castle
+013	Inside of Lionel Castle
+014	Office of Lionel Castle
+015	At the Gate of Limberry Castle (1)
+016	Inside of Limberry Castle
+017	Underground Cemetary of Limberry Castle
+018	Office of Limberry Castle
+019	At the Gate of Limberry Castle (2)
+020	Inside of Zeltennia Castle
+021	Zeltennia Castle
+022	Magic City Gariland
+023	Belouve Residence
+024	Military Academy's Auditorium
+025	Yardow Fort City
+026	Weapon Storage of Yardow
+027	Goland Coal City
+028	Colliery Underground First Floor
+029	Colliery Underground Second Floor
+030	Colliery Underground Third Floor
+031	Dorter Trade City
+032	Slums in Dorter
+033	Hospital in Slums
+034	Cellar of Sand Mouse
+035	Zaland Fort City
+036	Church Outside of Town
+037	Ruins Outside Zaland
+038	Goug Machine City
+039	Underground Passage in Goland
+040	Slums in Goug
+041	Besrodio's House
+042	Warjilis Trade City
+043	Port of Warjilis
+044	Bervenia Free City
+045	Ruins of Zeltennia Castle's Church
+046	Cemetary of Heavenly Knight, Balbanes
+047	Zarghidas Trade City
+048	Slums of Zarghidas
+049	Fort Zeakden
+050	St. Murond Temple (Outside)
+051	St. Murond Temple (Inside)
+052	Chapel of St. Murond Temple
+053	Entrance to Death City
+054	Lost Sacred Precincts
+055	Graveyard of Airships
+056	Orbonne Monastery
+057	Underground Book Storage First Floor
+058	Underground Book Storage Second Floor
+059	Underground Book Storage Third Floor
+060	Underground Book Storge Fourth Floor
+061	Underground Book Storage Fifth Floor
+062	Chapel of Orbonne Monastery
+063	Golgorland Execution Site
+064	In Front of Bethla Garrison's Sluice
+065	Granary of Bethla Garrison
+066	South Wall of Bethla Garrison
+067	Noth Wall of Bethla Garrison
+068	Bethla Garrison
+069	Murond Death City
+070	Nelveska Temple
+071	Dolbodar Swamp
+072	Fovoham Plains
+073	Inside of Windmill Shed
+074	Sweegy Woods
+075	Bervenia Volcano
+076	Zeklaus Desert
+077	Lenalia Plateau
+078	Zigolis Swamp
+079	Yuguo Woods
+080	Araguay Woods
+081	Grog Hill
+082	Bed Desert
+083	Zirekile Falls
+084	Bariaus Hill
+085	Mandalia Plains
+086	Doguola Pass
+087	Bariaus Valley
+088	Finath River
+089	Poeskas Lake
+090	Germinas Peak
+091	Thieves Fort
+092	Igros-Belouve Residence
+093	Broke Down Shed-Wooden Building
+094	Broke Down Shed-Stone Building
+095	Church
+096	Pub
+097	Inside Castle Gate in Lesalia
+098	Outside Castle Gate in Lesalia
+099	Main Street of Lesalia
+100	Public Cemetary
+101	For Tutorial 1 (Checkerboard Island)
+102	For Tutorial 2 (Checkerboard Arch)
+103	Windmill Shed
+104	Belouve Residence
+105	TERMINATE
+106	DELTA
+107	NOGIAS
+108	VOYAGE
+109	BRIDGE
+110	VALKYRIES
+111	MLAPAN
+112	TIGER
+113	HORROR
+114	END
+115	Banished Fort
+116	Battle Arena
+117	??? (Checkerboard Wall 1)
+118	??? (Checkerboard Wall 2)
+119	??? (Checkerboard Wall 3)
+120	?Garbled? (Sloped Checkerboard)
+121	??? (Unused ?)
+122	???
+123	???
+124	???
+125	??? (Unused 2 ?)
+126 ???
