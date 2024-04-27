@@ -22,3 +22,5 @@
 ### Misc
 
 - Added an xml_patch to always give monsters access to their fourth ability slot. This makes combats on average a bit more interesting and challenging.
+- Changed starting status restrictions to remove most incapacitating statuses (anything that was banned to be an innate is now banned from being a starting status as well: no sleep, don't act, stop etc.)
+- Set "Learnable with JP" flag for all abilities so Zodiac and Ultima will be more relevant

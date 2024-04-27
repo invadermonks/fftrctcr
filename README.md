@@ -8,9 +8,13 @@
 
 ### WINDOWS:
 
+Place a copy of the FFT disc image named fft.bin in the same folder as `fftrctcr.exe` and `create_seed_fftrctcr.bat` and run the bat script. `create_seed_fftrctcr.bat` is a script that will prompt you for difficulty and randomness values and will generate a randomizer seed with default options, edit this script with your preferred settings.
+
 Run the executable file, `fftrctcr.exe`. If you are on an older version of Windows, you might need to update to run the executable. Follow the instructions [here](https://support.microsoft.com/en-us/help/2999226/update-for-universal-c-runtime-in-windows).
 
 If that doesn't work, you can also install Python 3 from [Python.org](https://www.python.org/downloads/windows/) and follow the instructions below.
+
+To build, run `pyinstaller randomizer.spec` and copy the generated `fftrctcr.exe` file from the dist/ directory and deploy it alongside the custom/ directory.
 
 ### LINUX, MAC, AND OTHER:
 

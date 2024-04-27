@@ -6830,7 +6830,7 @@ def write_spoiler(all_objects):
     for p in PoachObject.every:
         f.write(str(p) + '\n')
 
-    f.write('Map  : (x , y) : [common , rare]\n') 
+    f.write('\nMap  : (x , y) : [common , rare]\n') 
     for mf in MoveFindObject.every:
         if mf.map is not None:
             f.write('Map ' + names.maps[mf.map.map_index] + ' : ') 
