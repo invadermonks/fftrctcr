@@ -1,4 +1,10 @@
-## Version 4.1i Changelog
+## Version 4.02i Changelog
+
+### Misc
+
+- Added an xml_patch to merge Support and Movement abilities to allow for more customization. Now you can do things like equip Move+3 and Move-Find Item, or Equip Sword and Non-Charge. (default xml_patches can be easily removed by commending them out with a '\#' in custom/xml_patches/patches.cfg)
+
+## Version 4.01i Changelog
 
 ### JP Changes
 

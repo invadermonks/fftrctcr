@@ -280,5 +280,9 @@
     <Location file="BATTLE_BIN" offset="118038">
       0C00A534
     </Location>
+  </Patch>  
+  <Patch name="Merge Support Movement">
+    <Location file="WORLD_WORLD_BIN" offset="429EC">FD010234</Location>
+    <Location file="WORLD_WORLD_BIN" offset="429F8">C6010334</Location>
   </Patch>
 </Patches>
