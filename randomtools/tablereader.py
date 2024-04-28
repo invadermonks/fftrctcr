@@ -778,7 +778,8 @@ class TableObject(object):
                     if c.intershuffle_group == self.intershuffle_group]
 
         if len(candidates) <= 0:
-            raise Exception("No candidates for get_similar")
+            print("No candidates for get_similar\n")
+            return None
 
         if self not in candidates:
             if override_outsider:

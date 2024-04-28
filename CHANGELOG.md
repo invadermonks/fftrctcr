@@ -1,3 +1,9 @@
+## Version 4.03i Changelog
+
+### Bug Fixes
+
+- Fixed a bug with capping jp at 3000 that was causing abilities with lower vanilla values to be randomized to much higher values.
+
 ## Version 4.02i Changelog
 
 ### Misc

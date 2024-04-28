@@ -25,7 +25,7 @@ from traceback import format_exc
 import re
 
 
-VERSION = '4.02i'
+VERSION = '4.03i'
 ALL_OBJECTS = None
 DEBUG = environ.get('DEBUG')
 
@@ -163,8 +163,9 @@ class AbilityObject(TableObject):
 
     def cleanup(self):
         self.set_bit('no_learn_with_jp', False)
-        self.jp_cost = random.random() * 4000
-        self.jp_cost = int(round(self.jp_cost, -1))
+        if self.jp_cost == 0:
+            self.jp_cost = random.random() * 4000
+            self.jp_cost = int(round(self.jp_cost, -1))
         if self.jp_cost >= 3000:
             self.jp_cost = 3000
 
@@ -5108,6 +5109,10 @@ class UnitObject(TableObject):
             similar = template_job.get_similar(
                 candidates=candidates, random_degree=self.random_degree,
                 override_outsider=True, wide=True)
+            if (similar is None):
+                print('No similar monster found')
+                print('Candidates were: %s' % candidates)
+                raise Exception('No similar monster found for %s\n' % self)
             self.graphic = self.MONSTER_GRAPHIC
             self.job_index = similar.index
             self.clear_gender()
@@ -6884,4 +6889,4 @@ if __name__ == '__main__':
 
     except Exception:
         print(format_exc())
-        input('Press Enter to close this program. ')
+        #input('Press Enter to close this program. ')
