@@ -165,9 +165,9 @@ class AbilityObject(TableObject):
         self.set_bit('no_learn_with_jp', False)
         if self.jp_cost == 0:
             self.jp_cost = random.random() * 4000
-            self.jp_cost = int(round(self.jp_cost, -1))
         if self.jp_cost >= 3000:
             self.jp_cost = 3000
+        self.jp_cost = int(round(self.jp_cost, -1))
 
 
 class AbilityAttributesObject(MutateBoostMixin):
