@@ -7,3 +7,5 @@ _temp/
 __pycache__
 *.pyc
 *.pyo
+fftrctcr*
+*.lnk

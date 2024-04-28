@@ -914,6 +914,14 @@ class JobObject(TableObject):
                     value = oldvalue / difference
                 else:
                     value = oldvalue * difference
+                if attr == 'hpmult':
+                    min_hpmult = oldvalue * get_difficulty()
+                    if value < min_hpmult:
+                        value = min_hpmult
+                if attr == 'hpgrowth':
+                    max_hpgrowth = oldvalue / (get_difficulty() ** 0.5)
+                    if value > max_hpgrowth:
+                        value = max_hpgrowth
                 value = max(0, min(0xff, int(round(value))))
                 setattr(self, attr, value)
 
