@@ -4,3 +4,6 @@ fftr_spoiler*
 build/
 dist/
 _temp/
+__pycache__
+*.pyc
+*.pyo
