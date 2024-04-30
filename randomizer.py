@@ -915,11 +915,11 @@ class JobObject(TableObject):
                 else:
                     value = oldvalue * difference
                 if attr == 'hpmult':
-                    min_hpmult = oldvalue * get_difficulty()
+                    min_hpmult = oldvalue * ((get_difficulty()+1)/2)
                     if value < min_hpmult:
                         value = min_hpmult
                 if attr == 'hpgrowth':
-                    max_hpgrowth = oldvalue / (get_difficulty() ** 0.5)
+                    max_hpgrowth = oldvalue / (1.07 ** (get_difficulty() ** 2))
                     if value > max_hpgrowth:
                         value = max_hpgrowth
                 value = max(0, min(0xff, int(round(value))))
@@ -5668,7 +5668,11 @@ class UnitObject(TableObject):
                     JobObject.MIME_INDEX - JobObject.SQUIRE_INDEX)
 
         if (self.get_bit('always_present')):
-            self.set_bit('randomly_present', False)
+            # both bits being set disables the unit, if that wasn't the vanilla settings, unset randomly_present
+            if self.get_bit('always_present', old=True) and self.get_bit('randomly_present', old=True):
+                pass
+            else:
+                self.set_bit('randomly_present', False)
 
         if (self.character_name == 'Alma'
                 and self.graphic == self.old_data['graphic']):
@@ -5713,7 +5717,9 @@ class UnitObject(TableObject):
                                  'righthand', 'lefthand', 'job_index',
                                  'level', 'month', 'day', 'brave', 'faith'):
                         setattr(self, attr, getattr(u, attr))
-
+        if self.job.is_lucavi:
+            if self.old_data['level'] > self.level:
+                self.level = self.old_data['level']
         if self.job.is_lucavi and self.is_valid and not self.job.is_altima:
             if UnitObject.flag in get_flags():
                 assert 1 <= self.secondary <= 0xfd
