@@ -1,3 +1,13 @@
+## Version 4.04i Changelog
+
+### Bug Fixes
+
+- Fixed a bug with ENTD generation to leave the "Always Present" and "Randomly Present" flags set if that's what their vanilla values were.
+
+### Balancing
+
+- Set a minimum value for lucavi health based on difficulty value when difficulty value is > 1.0 (Altima 2 will have maximum HP above difficulty 5.0)
+
 ## Version 4.03i Changelog
 
 ### Bug Fixes
