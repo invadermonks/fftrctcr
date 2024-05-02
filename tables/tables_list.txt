@@ -46,6 +46,10 @@ SpriteImageObject           empty.txt                       pointers_sprite_imag
 $characters             names_characters.txt
 $items                  names_items.txt
 $maps                   names_maps.txt
+$jobs                   names_jobs.txt
+$abilities              names_abilities.txt
+$skillsets              names_skillsets.txt
+$inflict                names_inflict.txt
 $monsters               names_monsters.txt
 $formfaces              names_formfaces.txt
 $formsprites            names_formsprites.txt

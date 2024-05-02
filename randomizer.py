@@ -277,18 +277,67 @@ class JobObject(TableObject):
     ALTIMA_NICE_BODY = 0x41
     ALTIMA_PERFECT_BODY = 0x49
 
-    VALID_INNATE_STATUSES = 0xc2fcc12a10
-    VALID_INFLICT_STATUSES = (VALID_INNATE_STATUSES |
-                            0x1c02300000)
-    VALID_START_STATUSES =  VALID_INNATE_STATUSES
-    BENEFICIAL_STATUSES =   0xc278600000
-    RERAISE_STATUS =        0x0000200000
-    FAITH_STATUS =          0x8000000000
-    INNOCENT_STATUS =       0x4000000000
-    INVITE_STATUS =         0x0000004000
-    FLOAT_STATUS =          0x0000400000
+    PERFORMING_STATUS =     0x0000000001
+    DEFENDING_STATUS =      0x0000000002
+    JUMP_STATUS =           0x0000000004
+    CHARGING_STATUS =       0x0000000008
+    UNDEAD_STATUS =         0x0000000010
     DEAD_STATUS =           0x0000000020
+    CRYSTAL_STATUS =        0x0000000040
+    UNKNOWN_STATUS_1 =      0x0000000080 # blank in FFTPatcher
 
+    TREASURE_STATUS =       0x0000000100
+    UNKNOWN_STATUS_2 =      0x0000000200 # listed as "Dark/Evil Looking" in FFTPatcher
+    BLOOD_SUCK_STATUS =     0x0000000400
+    SILENCE_STATUS =        0x0000000800
+    CONFUSION_STATUS =      0x0000001000
+    DARKNESS_STATUS =       0x0000002000
+    INVITE_STATUS =         0x0000004000
+    PETRIFY_STATUS =        0x0000008000
+
+    CRITICAL_STATUS =       0x0000010000
+    FROG_STATUS =           0x0000020000
+    CHICKEN_STATUS =        0x0000040000
+    BERSERK_STATUS =        0x0000080000
+    TRANSPARENT_STATUS =    0x0000100000
+    RERAISE_STATUS =        0x0000200000
+    FLOAT_STATUS =          0x0000400000
+    OIL_STATUS =            0x0000800000
+
+    IMMUNE_STATUS =         0x0001000000
+    STOP_STATUS =           0x0002000000
+    SLOW_STATUS =           0x0004000000
+    HASTE_STATUS =          0x0008000000
+    SHELL_STATUS =          0x0010000000
+    PROTECT_STATUS =        0x0020000000
+    REGEN_STATUS =          0x0040000000
+    POISON_STATUS =         0x0080000000
+
+    DEATH_SENTENCE_STATUS = 0x0100000000
+    REFLECT_STATUS =        0x0200000000
+    DONT_ACT_STATUS =       0x0400000000
+    DONT_MOVE_STATUS =      0x0800000000
+    SLEEP_STATUS =          0x1000000000
+    CHARM_STATUS =          0x2000000000
+    INNOCENT_STATUS =       0x4000000000
+    FAITH_STATUS =          0x8000000000
+
+    VALID_INNATE_STATUSES = ( UNDEAD_STATUS | UNKNOWN_STATUS_2 | SILENCE_STATUS | DARKNESS_STATUS |
+                               CRITICAL_STATUS | FLOAT_STATUS | OIL_STATUS | 
+                               SLOW_STATUS | HASTE_STATUS | SHELL_STATUS | PROTECT_STATUS | REGEN_STATUS | POISON_STATUS |
+                               REFLECT_STATUS | INNOCENT_STATUS | FAITH_STATUS )
+
+    VALID_INFLICT_ONLY_STATUSES = ( TRANSPARENT_STATUS | RERAISE_STATUS | STOP_STATUS |
+                                     DONT_ACT_STATUS | DONT_MOVE_STATUS | SLEEP_STATUS )
+
+    VALID_INFLICT_STATUSES = ( VALID_INNATE_STATUSES | VALID_INFLICT_ONLY_STATUSES )
+
+    VALID_START_STATUSES =  VALID_INNATE_STATUSES
+
+    BENEFICIAL_STATUSES = ( RERAISE_STATUS | FLOAT_STATUS |
+                             HASTE_STATUS | SHELL_STATUS | PROTECT_STATUS | REGEN_STATUS |
+                             REFLECT_STATUS | INNOCENT_STATUS | FAITH_STATUS )
+    
     BANNED_RSMS = [0x1bb, 0x1e1, 0x1e4, 0x1e5, 0x1f1]
     LUCAVI_INNATES = (lange(0x1a6, 0x1a9) + [0x1aa] + lange(0x1ac, 0x1b0)
                       + lange(0x1b1, 0x1b4) + [0x1b5, 0x1ba, 0x1bd, 0x1be]
@@ -5722,6 +5771,7 @@ class UnitObject(TableObject):
         if self.job.is_lucavi:
             if get_difficulty() > 1:
                 lucavi_min_level = self.old_data['level'] * (1 + (get_difficulty() * 0.1))
+                lucavi_min_level = max(0, min(99, int(round(lucavi_min_level))))
                 if lucavi_min_level > self.level:
                     self.level = lucavi_min_level
         if self.job.is_lucavi and self.is_valid and not self.job.is_altima:

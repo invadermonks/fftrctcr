@@ -1,0 +1,128 @@
+00 None
+01 Cancel Poison [Antidote]
+02 Cancel Darkness [Eye Drop]
+03 Cancel Silence [Echo Grass]
+04 Cancel Frog [Maiden's Kiss]
+05 Cancel Petrify [Soft]
+06 Cancel Undead & Blood Suck [Holy Water]
+07 Cancel Petrify, Darkness, Confusion, Silence, Oil, Frog, Poison & Sleep [Remedy]
+08 Cancel Dead [Phoenix Down]
+09 All Darkness [Blind Knife]
+0A All Silence [Mage Masher]
+0B All Death Sentence [Assassin Dagger]
+0C All Sleep [Zorlin Shape]
+0D All Don't Act [Spell Edge]
+0E All Don't Move [Ancient Sword]
+0F All Sleep [Sleep Sword] (The same as 0C.)
+10 All Frog [Nagrarock]
+11 All Petrify [Chaos Blade]
+12 All Slow [Slasher]
+13 All Poison [Poison Rod]
+14 All Faith [Faith Rod]
+15 All Darkness [Night Killer] (The same as 09.)
+16 All Poison [Poison Bow] (The same as 13.)
+17 All Confusion [Ramia Harp]
+18 All Charm [Fairy Harp]
+19 All Innocent [Gokuu Rod]
+1A Cancel Darkness, Silence, Oil, Frog, Poison, Slow, Stop, Don't Move & Don't Act [Octagon Rod]
+1B All Sleep (This is unused.)
+1C Cancel Death Sentence [White Staff]
+1D None
+1E None
+1F None
+20 Cancel Dead [Raise, Raise 2, Revive, Oink] (The same as 08.)
+21 All Reraise [Reraise]
+22 All Regen [Regen]
+23 All Protect [Protect, Protect 2, Protect Spirit]
+24 All Shell [Shell, Shell 2, Calm Spirit]
+25 All Protect & Shell [Wall, Kiyomori]
+26 Cancel Petrify, Darkness, Confusion, Silence, Berserk, Frog, Poison, Sleep, Don't Act & Don't Move [Esuna, Stigma Magic]
+27 All Poison [Poison, Poison Nail] (The same as 13 & 16.)
+28 All Frog [Toad 2] (The same as 10.)
+29 All Dead [Death, Stop Bracelet, Sudden Cry, Compress]
+2A All Haste [Haste, Haste 2]
+2B All Slow [Slow, Slow 2, Heaven's Cloud] (The same as 12.)
+2C All Stop [Stop, Shadow Stitch, Spell]
+2D All Don't Move [Don't Move, Hold Tight, Leg Aim, Goo] (The same as 0E.)
+2E All Float [Float]
+2F All Reflect [Reflect, Carbunkle, Lick]
+30 All Darkness [Blind (Oracle), Darkness, Blind 2, Blind (Temple), Eye Gouge, Black Ink] (The same as 09 & 15.)
+31 All Faith [Pray Faith, Faith] (The same as 14.)
+32 All Innocent [Doubt Faith, Innocent] (The same as 19.)
+33 All Undead [Zombie (Oracle), Zombie (Temple)]
+34 All Silence [Silence Song, Silf, Lose Voice, Silence] (The same as 0A.)
+35 All Berserk [Blind Rage, Insult, Berserk]
+36 All Confusion [Confusion Song, Loss, Confuse 2, Confuse] (The same as 17.)
+37 Cancel Float, Reraise, Transparent, Regen, Protect, Shell, Haste, Faith & Reflect [Dispel Magic, Despair 2, Despair, Odd Soundwave]
+38 All Don't Act [Paralyze, Chicken Race, Arm Aim, Don't Act] (The same as 0D.)
+39 All Sleep [Sleep (Oracle), Mimic Daravon, Sleep 2, Sleep (Temple)] (The same as 0C & 0F.)
+3A All Petrify [Petrify, Break] (The same as 11.)
+3B Random Reraise, Regen, Protect, Shell & Haste [Nameless Song]
+3C Random Darkness, Confusion, Silence, Frog, Poison, Slow, Stop & Sleep [Nameless Dance]
+3D All Death Sentence [Secret Fist, Death Sentence (Mediator), Death Sentence (Ahriman)] (The same as 0B.)
+3E All Charm [Steal Heart, Allure, Nose Bracelet] (The same as 18.)
+3F All Invite [Invitation, Dragon Tame]
+40 Cancel Petrify, Oil, Poison, Stop (This is unused.)
+41 All Don't Move [Pitfall] (The same as 0E & 2D.)
+42 All Stop [Hell Ivy] (The same as 2C.)
+43 All Frog [Water Ball] (The same as 10 & 28.)
+44 All Petrify [Carve Model] (The same as 11 & 3A.)
+45 All Confusion [Local Quake] (The same as 17 & 36.)
+46 All Don't Act [Kamaitachi] (The same as 0D & 38.)
+47 All Sleep [Demon Fire] (The same as 0C, 0F & 39.)
+48 All Death Sentence [Quicksand] (The same as 0B & 3D.)
+49 All Darkness [Sand Storm] (The same as 09, 15 & 30.)
+4A All Silence [Blizzard] (The same as 0A & 34.)
+4B All Slow [Gusty Wind] (The same as 12 & 2B.)
+4C All Dead [Lava Ball] (The same as 29.)
+4D Random Confusion & Death Sentence [Muramasa]
+4E All Regen & Haste [Masamune]
+4F Cancel Darkness, Silence & Confusion [Heal]
+50 Cancel Petrify, Confusion, Silence, Blood Suck, Frog, Poison, Stop, Sleep, Don't Move & Don't Act [Deathspell 2]
+51 All Stop, Don't Move & Don't Act [Galaxy Stop]
+52 Random Darkness, Confusion, Silence, Frog, Poison, Slow, & Sleep [Space Storage, Space Storage Back]
+53 All Petrify [Seal (Assassin)] (The same as 11, 3A & 44.)
+54 Random Sleep & Death Sentence [Nightmare]
+55 All Blood Suck [Blood Suck (Elmdor)]
+56 Separate Darkness [Bio (first)]
+57 Separate Poison [Bio (second)]
+58 Separate Oil [Bio (third)]
+59 Separate Undead [Bio 3 (first)]
+5A Separate Dead [Bio 3 (second)]
+5B Separate Petrify [Bio 3 (third)]
+5C All Reraise, Regen, Protect, Shell, & Haste [Magic Barrier]
+5D All Petrify [Seal Evil] (The same as 11, 3A, 44 & 53.)
+5E Cancel Darkness, Confusion, Silence, Oil, Berserk, Frog, Poison, Stop, Sleep, Don't Move, & Don't Act [Dragon Care]
+5F Random Dead, Petrify & Stop [Finish Touch]
+60 All Crystal [Please Eat]
+61 All Frog [Bio 2 (first)] (The same as 10, 28 & 43.)
+62 All Slow [Death Cold, Bio 2 (second)] (The same as 12, 2B & 4B.)
+63 All Silence [Bio 2 (third)] (The same as 0A, 34 & 4A.)
+64 Cancel Petrify, Darkness, Silence, Poison, Stop, Don't Move & Don't Act [Choco Esuna]
+65 All Oil [Self Destruct]
+66 Random Petrify & Stop [Blaster]
+67 Random Confusion & Berserk [Mind Blast]
+68 Random Confusion & Sleep [Pooh]
+69 Separate Petrify, Darkness, Confusion, Silence, Oil, Frog, Poison & Sleep [Bad Bracelet, Parasite]
+6A Separate Petrify, Darkness, Confusion, Silence, Berserk, Frog, Poison, Slow & Sleep [Grand Cross]
+6B Separate Blood Suck [Blood Suck (Panther)]
+6C All Undead [Zombie Touch] (The same as 33.)
+6D All Sleep [Sleep Touch] (The same as 0C, 0F, 39 & 47.)
+6E All Oil [Grease Touch] (The same as 65.)
+6F Random Petrify, Darkness, Silence, Don't Move & Don't Act [Look of the Devil]
+70 All Petrify [Beak] (The same as 11, 3A, 44, 53 & 5D.)
+71 Separate Dead & Sleep [Dark Whisper]
+72 All Petrify [Seal (Zodiac), Bio 2 (fourth)] (The same as 11, 3A, 44, 53, 5D & 70.)
+73 All Frog [Frog] (The same as 10, 28, 43 & 61.)
+74 All Frog & Poison [Poison Frog]
+75 Separate Stop [Stasis Sword]
+76 Separate Death Sentence [Split Punch]
+77 Separate Dead [Crush Punch] (The same as 5A.)
+78 Separate Silence [Lightning Stab]
+79 Separate Confusion [Holy Explosion]
+7A None
+7B None
+7C None
+7D None
+7E None
+7F None

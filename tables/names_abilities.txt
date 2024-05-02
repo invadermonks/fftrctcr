@@ -1,0 +1,512 @@
+000 (blank)
+001 Cure
+002 Cure 2
+003 Cure 3
+004 Cure 4
+005 Raise
+006 Raise 2
+007 Reraise
+008 Regen
+009 Protect
+00A Protect 2
+00B Shell
+00C Shell 2
+00D Wall
+00E Esuna
+00F Holy
+010 Fire
+011 Fire 2
+012 Fire 3
+013 Fire 4
+014 Bolt
+015 Bolt 2
+016 Bolt 3
+017 Bolt 4
+018 Ice
+019 Ice 2
+01A Ice 3
+01B Ice 4
+01C Poison
+01D Frog
+01E Death
+01F Flare
+020 Haste
+021 Haste 2
+022 Slow
+023 Slow 2
+024 Stop
+025 Don't Move
+026 Float
+027 Reflect
+028 (blank)
+029 Quick
+02A Demi
+02B Demi 2
+02C Meteor
+02D Sanguine Sword
+02E Blind
+02F Spell Absorb
+030 Life Drain
+031 Pray Faith
+032 Doubt Faith
+033 Zombie
+034 Silence Song
+035 Blind Rage
+036 Foxbird
+037 Confusion Song
+038 Dispel Magic
+039 Paralyze
+03A Sleep
+03B Petrify
+03C Moogle
+03D Shiva
+03E Ramuh
+03F Ifrit
+040 Titan
+041 Golem
+042 Carbunkle
+043 Bahamut
+044 Odin
+045 Leviathan
+046 Salamander
+047 Silf
+048 Fairy
+049 Lich
+04A Cyclops
+04B Zodiac
+04C Asura
+04D Koutetsu
+04E Bizen Boat
+04F Murasame
+050 Heaven's Cloud
+051 Kiyomori
+052 Muramasa
+053 Kikuichimoji
+054 Masamune
+055 Chirijiraden
+056 Angel Song
+057 Life Song
+058 Cheer Song
+059 Battle Song
+05A Magic Song
+05B Nameless Song
+05C Last Song
+05D Witch Hunt
+05E Wiznaibus
+05F Slow Dance
+060 Polka Polka
+061 Disillusion
+062 Nameless Dance
+063 Last Dance
+064 Spin Fist
+065 Repeating Fist
+066 Wave Fist
+067 Earth Slash
+068 Secret Fist
+069 Stigma Magic
+06A Chakra
+06B Revive
+06C Gil Taking
+06D Steal Heart
+06E Steal Helmet
+06F Steal Armor
+070 Steal Shield
+071 Steal Weapon
+072 Steal Accessry
+073 Steal Exp
+074 Invitation
+075 Persuade
+076 Praise
+077 Threaten
+078 Preach
+079 Solution
+07A Death Sentence
+07B Negotiate
+07C Insult
+07D Mimic Daravon
+07E Pitfall
+07F Water Ball
+080 Hell Ivy
+081 Carve Model
+082 Local Quake
+083 Kamaitachi
+084 Demon Fire
+085 Quicksand
+086 Sand Storm
+087 Blizzard
+088 Gusty Wind
+089 Lava Ball
+08A Head Break
+08B Armor Break
+08C Shield Break
+08D Weapon Break
+08E Magic Break
+08F Speed Break
+090 Power Break
+091 Mind Break
+092 Accumulate
+093 Dash
+094 Throw Stone
+095 Heal
+096 Yell
+097 Cheer Up
+098 Wish
+099 Scream
+09A Ultima
+09B Stasis Sword
+09C Split Punch
+09D Crush Punch
+09E Lightning Stab
+09F Holy Explosion
+0A0 Shellbust Stab
+0A1 Blastar Punch
+0A2 Hellcry Punch
+0A3 Icewolf Bite
+0A4 Dark Sword
+0A5 Night Sword
+0A6 Dark Holy
+0A7 Deathspell 2
+0A8 Galaxy Stop
+0A9 Heaven Thunder
+0AA Asura
+0AB Diamond Sword
+0AC Hydragon Pit
+0AD Space Storage
+0AE Sky Demon
+0AF Heaven Bltback
+0B0 Asura Back
+0B1 Dia Swrd Back
+0B2 Dragn Pit Back
+0B3 Space Str Back
+0B4 Sky Demon Back
+0B5 Seal
+0B6 Shadow Stitch
+0B7 Stop Bracelet
+0B8 (blank)
+0B9 Shock
+0BA Difference
+0BB Seal
+0BC Chicken Race
+0BD Hold Tight
+0BE Darkness
+0BF Lose Voice
+0C0 Loss
+0C1 Spell
+0C2 Nightmare
+0C3 Death Cold
+0C4 Magic Ruin
+0C5 Speed Ruin
+0C6 Power Ruin
+0C7 Mind Ruin
+0C8 Blood Suck
+0C9 Allure
+0CA Bio
+0CB Bio
+0CC Bio
+0CD Bio 2
+0CE Bio 2
+0CF Bio 2
+0D0 Bio 2
+0D1 Bio 3
+0D2 Bio 3
+0D3 Bio 3
+0D4 Mbarrier
+0D5 Leg Aim
+0D6 Arm Aim
+0D7 Seal Evil
+0D8 Melt
+0D9 Tornado
+0DA Quake
+0DB Altima Teleport Send Blue
+0DC Altima Teleport Send Red
+0DD Toad 2
+0DE Gravi 2
+0DF Flare 2
+0E0 Blind 2
+0E1 Small Bomb
+0E2 Small Bomb
+0E3 Confuse 2
+0E4 Sleep 2
+0E5 Ultima
+0E6 All-ultima
+0E7 Mute
+0E8 Despair 2
+0E9 Return 2
+0EA Blind
+0EB Aspel
+0EC Drain
+0ED Faith
+0EE Innocent
+0EF Zombie
+0F0 Silence
+0F1 Berserk
+0F2 Chicken
+0F3 Confuse
+0F4 Despair
+0F5 Don't Act
+0F6 Sleep
+0F7 Break
+0F8 Ice Bracelet
+0F9 Fire Bracelet
+0FA Thnder Brcelet
+0FB Dragon Tame
+0FC Dragon Care
+0FD Dragon PowerUp
+0FE Dragon LevelUp
+0FF Holy Bracelet
+100 Shock
+101 Braver
+102 Cross-slash
+103 Blade Beam
+104 Climhazzard
+105 Meteorain
+106 Finish Touch
+107 Omnislash
+108 Cherry Blossom
+109 Choco Attack
+10A Choco Ball
+10B Choco Meteor
+10C Choco Esuna
+10D Choco Cure
+10E Tackle
+10F Goblin Punch
+110 Turn Punch
+111 Eye Gouge
+112 Mutilate
+113 Bite
+114 Small Bomb
+115 Self Destruct
+116 Flame Attack
+117 Spark
+118 Scratch
+119 Cat Kick
+11A Blaster
+11B Poison Nail
+11C Blood Suck
+11D Tentacle
+11E Black Ink
+11F Odd Soundwave
+120 Mind Blast
+121 Level Blast
+122 Knife Hand
+123 Thunder Soul
+124 Aqua Soul
+125 Ice Soul
+126 Wind Soul
+127 Throw Spirit
+128 Zombie Touch
+129 Sleep Touch
+12A Drain Touch
+12B Grease Touch
+12C Wing Attack
+12D Look of Devil
+12E Look of Fright
+12F Circle
+130 Death Sentence
+131 Scratch Up
+132 Beak
+133 Shine Lover
+134 Feather Bomb
+135 Beaking
+136 Straight Dash
+137 Nose Bracelet
+138 Oink
+139 Pooh-
+13A Please Eat
+13B Leaf Dance
+13C Protect Spirit
+13D Clam Spirit
+13E Spirit of Life
+13F Magic Spirit
+140 Shake Off
+141 Wave Around
+142 Mimic Titan
+143 Gather Power
+144 Blow Fire
+145 Tentacle
+146 Lick
+147 Goo
+148 Bad Bracelet
+149 Moldball Virus
+14A Stab Up
+14B Sudden Cry
+14C Hurricane
+14D Ulmaguest
+14E Giga Flare
+14F Dash
+150 Tail Swing
+151 Ice Bracelet
+152 Fire Bracelet
+153 Thnder Brcelet
+154 Triple Attack
+155 Triple Brcelet
+156 Triple Thunder
+157 Triple Flame
+158 Dark Whisper
+159 Snake Carrier
+15A Poison Frog
+15B Midgar Swarm
+15C Lifebreak
+15D Nanoflare
+15E Grand Cross
+15F Destroy
+160 Compress
+161 Dispose
+162 Crush
+163 Energy
+164 Parasite
+165 (blank)
+166 (blank)
+167 (blank)
+168 (blank)
+169 (blank)
+16A (blank)
+16B (blank)
+16C (blank)
+16D (blank)
+16E (blank)
+16F Attack
+170 Potion
+171 Hi-Potion
+172 X-Potion
+173 Ether
+174 Hi-Ether
+175 Elixir
+176 Antidote
+177 Eye Drop
+178 Echo Grass
+179 Maiden's Kiss
+17A Soft
+17B Holy Water
+17C Remedy
+17D Phoenix Down
+17E Shuriken
+17F Knife
+180 Sword
+181 Hammer
+182 Katana
+183 Ninja Sword
+184 Axe
+185 Spear
+186 Stick
+187 Knight Sword
+188 Dictionary
+189 Ball
+18A Level Jump2
+18B Level Jump3
+18C Level Jump4
+18D Level Jump5
+18E Level Jump8
+18F Vertical Jump2
+190 Vertical Jump3
+191 Vertical Jump4
+192 Vertical Jump5
+193 Vertical Jump6
+194 Vertical Jump7
+195 Vertical Jump8
+196 Charge+1
+197 Charge+2
+198 Charge+3
+199 Charge+4
+19A Charge+5
+19B Charge+7
+19C Charge+10
+19D Charge+20
+19E CT
+19F Level
+1A0 Exp
+1A1 Height
+1A2 Prime Number
+1A3 5
+1A4 4
+1A5 3
+1A6 A Save
+1A7 MA Save
+1A8 Speed Save
+1A9 Sunken State
+1AA Caution
+1AB Dragon Spirit
+1AC Regenerator
+1AD Brave Up
+1AE Face Up
+1AF HP Restore
+1B0 MP Restore
+1B1 Critical Quick
+1B2 Meatbone Slash
+1B3 Counter Magic
+1B4 Counter Tackle
+1B5 Counter Flood
+1B6 Absorb Used MP
+1B7 Gilgame Heart
+1B8 Reflect
+1B9 Auto Potion
+1BA Counter
+1BB (blank)
+1BC Distribute
+1BD MP Switch
+1BE Damage Split
+1BF Weapon Guard
+1C0 Finger Guard
+1C1 Abandon
+1C2 Catch
+1C3 Blade Grasp
+1C4 Arrow Guard
+1C5 Hamedo
+1C6 Equip Armor
+1C7 Equip Shield
+1C8 Equip Sword
+1C9 Equip Knife
+1CA Equip Crossbow
+1CB Equip Spear
+1CC Equip Axe
+1CD Equip Gun
+1CE Half of MP
+1CF Gained Jp UP
+1D0 Gained Exp UP
+1D1 Attack UP
+1D2 Defense UP
+1D3 Magic AttackUP
+1D4 Magic DefendUP
+1D5 Concentrate
+1D6 Train
+1D7 Secret Hunt
+1D8 Martial Arts
+1D9 Monster Talk
+1DA Throw Item
+1DB Maintenance
+1DC Two Hands
+1DD Two Swords
+1DE Monster Skill
+1DF Defend
+1E0 Equip Change
+1E1 (blank)
+1E2 Short Charge
+1E3 Non-charge
+1E4 (blank)
+1E5 (blank)
+1E6 Move+1
+1E7 Move+2
+1E8 Move+3
+1E9 Jump+1
+1EA Jump+2
+1EB Jump+3
+1EC Ignore Height
+1ED Move-HP Up
+1EE Move-MP Up
+1EF Move-Get Exp
+1F0 Move-Get Jp
+1F1 (blank)
+1F2 Teleport
+1F3 Teleport 2
+1F4 Any Weather
+1F5 Any Ground
+1F6 Move in Water
+1F7 Walk on Water
+1F8 Move on Lava
+1F9 Move underwater
+1FA Float
+1FB Fly
+1FC Silent Walk
+1FD Move-Find Item
+1FE (blank)
+1FF (blank)
