@@ -5720,8 +5720,10 @@ class UnitObject(TableObject):
                                  'level', 'month', 'day', 'brave', 'faith'):
                         setattr(self, attr, getattr(u, attr))
         if self.job.is_lucavi:
-            if self.old_data['level'] > self.level:
-                self.level = self.old_data['level']
+            if get_difficulty() > 1:
+                lucavi_min_level = self.old_data['level'] * (1 + (get_difficulty() * 0.1))
+                if lucavi_min_level > self.level:
+                    self.level = lucavi_min_level
         if self.job.is_lucavi and self.is_valid and not self.job.is_altima:
             if UnitObject.flag in get_flags():
                 assert 1 <= self.secondary <= 0xfd
