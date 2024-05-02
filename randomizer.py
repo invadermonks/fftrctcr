@@ -234,7 +234,9 @@ class AbilityAttributesObject(MutateBoostMixin):
     def cleanup(self):
         if self.range == 0 and self.old_data['range'] != 0:
             self.range = self.old_data['range']
-
+        # FFT can't display mp costs above 99
+        if self.mp > 99:
+            self.mp = 99
         if self.get_bit('require_materia_blade'):
             self.set_bit('require_materia_blade', False)
             self.set_bit('require_sword', True)
