@@ -71,6 +71,9 @@ class AbilityObject(TableObject):
         }
 
     INVITATION = 0x74
+    PHOENIX_DOWN = 0x17d
+    SECRET_HUNT = 0x1d7
+    MOVE_FIND_ITEM = 0x1fd
     CHARGE_20 = 0x19d
     BALL = 0x189
     JUMPS = lange(0x18a, 0x196)
@@ -270,6 +273,7 @@ class JobObject(TableObject):
         "lancer", "samurai", "ninja", "calculator", "bard", "dancer", "mime",
         ]
     SQUIRE_INDEX = 0x4a
+    CHEMIST_INDEX = 0x4b
     MIME_INDEX = 0x5d
     CHOCOBO_INDEX = 0x5e
 
@@ -304,7 +308,7 @@ class JobObject(TableObject):
     FLOAT_STATUS =          0x0000400000
     OIL_STATUS =            0x0000800000
 
-    IMMUNE_STATUS =         0x0001000000
+    IMMUNE_STATUS =         0x0001000000 # Wall in FFTPatcher
     STOP_STATUS =           0x0002000000
     SLOW_STATUS =           0x0004000000
     HASTE_STATUS =          0x0008000000
@@ -322,17 +326,17 @@ class JobObject(TableObject):
     INNOCENT_STATUS =       0x4000000000
     FAITH_STATUS =          0x8000000000
 
-    VALID_INNATE_STATUSES = ( UNDEAD_STATUS | UNKNOWN_STATUS_2 | SILENCE_STATUS | DARKNESS_STATUS |
+    VALID_INNATE_STATUSES = ( UNDEAD_STATUS | DARKNESS_STATUS |
                                CRITICAL_STATUS | FLOAT_STATUS | OIL_STATUS | 
-                               SLOW_STATUS | HASTE_STATUS | SHELL_STATUS | PROTECT_STATUS | REGEN_STATUS | POISON_STATUS |
+                               HASTE_STATUS | SHELL_STATUS | PROTECT_STATUS | REGEN_STATUS |
                                REFLECT_STATUS | INNOCENT_STATUS | FAITH_STATUS )
+    
+    VALID_START_STATUSES =  ( VALID_INNATE_STATUSES | TRANSPARENT_STATUS | RERAISE_STATUS | POISON_STATUS | SLOW_STATUS )
 
-    VALID_INFLICT_ONLY_STATUSES = ( TRANSPARENT_STATUS | RERAISE_STATUS | STOP_STATUS |
-                                     DONT_ACT_STATUS | DONT_MOVE_STATUS | SLEEP_STATUS )
+    INFLICT_ONLY_STATUSES = ( STOP_STATUS | DONT_ACT_STATUS | DONT_MOVE_STATUS | SLEEP_STATUS | SILENCE_STATUS |
+                               FROG_STATUS | CONFUSION_STATUS | BERSERK_STATUS | CHARM_STATUS | UNKNOWN_STATUS_2 | DEAD_STATUS )
 
-    VALID_INFLICT_STATUSES = ( VALID_INNATE_STATUSES | VALID_INFLICT_ONLY_STATUSES )
-
-    VALID_START_STATUSES =  VALID_INNATE_STATUSES
+    VALID_INFLICT_STATUSES = ( VALID_START_STATUSES | INFLICT_ONLY_STATUSES )
 
     BENEFICIAL_STATUSES = ( RERAISE_STATUS | FLOAT_STATUS |
                              HASTE_STATUS | SHELL_STATUS | PROTECT_STATUS | REGEN_STATUS |
@@ -6805,9 +6809,9 @@ def replace_ending():
 
     if delita.job.immune_status & JobObject.INVITE_STATUS:
         delita.job.immune_status ^= JobObject.INVITE_STATUS
-    generic_skillsets = [ss for ss in SkillsetObject.every if ss.is_generic
+    generic_ss_has_invite = [ss for ss in SkillsetObject.every if ss.is_generic
                          and AbilityObject.INVITATION in ss.action_indexes]
-    if not generic_skillsets:
+    if not generic_ss_has_invite:
         skillset = SkillsetObject.get(ramza.job.skillset_index)
         indexes = [i for i in skillset.action_indexes if i > 0]
         if AbilityObject.INVITATION not in indexes:
@@ -6815,6 +6819,43 @@ def replace_ending():
                 chosen = random.choice(indexes)
                 indexes.remove(chosen)
             skillset.set_actions(indexes + [AbilityObject.INVITATION])
+
+    generic_skillsets = [ss for ss in SkillsetObject.every if ss.is_generic
+                         and len(ss.rsm_indexes) < 4]
+    if len(generic_skillsets) < 3:
+        generic_skillsets = [ss for ss in SkillsetObject.every if ss.is_generic]
+
+    generic_ss_has_secret_hunt = [ss for ss in SkillsetObject.every if ss.is_generic
+                         and AbilityObject.SECRET_HUNT in ss.action_indexes]
+    if not generic_ss_has_secret_hunt:
+        skillset = random.choice(generic_skillsets)
+        indexes = [i for i in skillset.rsm_indexes if i > 0]
+        if AbilityObject.SECRET_HUNT not in indexes:
+            while len(indexes) >= 6:
+                chosen = random.choice(indexes)
+                indexes.remove(chosen)
+            skillset.set_rsms(indexes + [AbilityObject.SECRET_HUNT])
+
+    generic_ss_has_move_find_item = [ss for ss in SkillsetObject.every if ss.is_generic
+                         and AbilityObject.MOVE_FIND_ITEM in ss.action_indexes]
+    if not generic_ss_has_move_find_item:
+        skillset = random.choice(generic_skillsets)
+        indexes = [i for i in skillset.rsm_indexes if i > 0]
+        if AbilityObject.MOVE_FIND_ITEM not in indexes:
+            while len(indexes) >= 6:
+                chosen = random.choice(indexes)
+                indexes.remove(chosen)
+            skillset.set_rsms(indexes + [AbilityObject.MOVE_FIND_ITEM])
+
+    chemist = JobObject.get(JobObject.CHEMIST_INDEX)
+    if not AbilityObject.PHOENIX_DOWN in chemist.skillset.action_indexes:
+        print("Adding Phoenix Down to Chemist's skillset.")
+        indexes = [i for i in chemist.skillset.action_indexes if i > 0]
+        if AbilityObject.PHOENIX_DOWN not in indexes:
+            while len(indexes) >= 16:
+                chosen = random.choice(indexes)
+                indexes.remove(chosen)
+            chemist.skillset.set_actions(indexes + [AbilityObject.PHOENIX_DOWN])
 
     knives = range(1, 0x0B)
     knives = [k for k in ItemObject.ranked if k.index in knives]
