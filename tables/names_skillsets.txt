@@ -156,7 +156,7 @@
 9B Sword Skill (Undead Knight)
 9C Charge (Undead Archer)
 9D Black Magic (Undead Wizard)
-9E Time Magic (Undead T. Mage)
+9E Time Magic (Undead Time Mage)
 9F Yin-Yang Magic (Undead Oracle)
 A0 Summon Magic (Undead Summoner)
 A1 Item (Undead secondary)

@@ -6854,7 +6854,6 @@ def replace_ending():
 
     chemist = JobObject.get(JobObject.CHEMIST_INDEX)
     if not AbilityObject.PHOENIX_DOWN in chemist.skillset.action_indexes:
-        print("Adding Phoenix Down to Chemist's skillset.")
         indexes = [i for i in chemist.skillset.action_indexes if i > 0]
         if AbilityObject.PHOENIX_DOWN not in indexes:
             while len(indexes) >= 16:
