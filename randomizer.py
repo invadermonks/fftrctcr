@@ -84,6 +84,7 @@ class AbilityObject(TableObject):
     TELEPORT2 = 0x1f3
     DUMMIED_ABILITIES = (NON_CHARGE, TELEPORT2)
     MP_RESTORE_INNATES = [0x1ee, 0x1b6, 0x1b0]
+    ACCURATE_SONG_DANCE = [0x56, 0x57, 0x5d, 0x5e]
     MAINTENANCE = 0x1db
 
     @property
@@ -243,6 +244,10 @@ class AbilityAttributesObject(MutateBoostMixin):
         if self.get_bit('require_materia_blade'):
             self.set_bit('require_materia_blade', False)
             self.set_bit('require_sword', True)
+        # Angel/Life Song, Wiznaibus and Witch Hunt should stay 100% accurate
+        if self.index in AbilityObject.ACCURATE_SONG_DANCE:
+            if self.xval < self.old_data['xval']:
+                self.xval = self.old_data['xval']
 
 
 class AbilityStatusObject(TableObject):

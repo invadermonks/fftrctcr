@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patches>
+  <Patch name="AI Fixes">
+		<Description>Removes useless code from Jump's CT calculations, CorrectlyAccounts for Abilities that are Weapon Elemental, Corrects the AI checking the wrong Supports for Short/Non Charge AND correctly calculates the CT (Rounding Up).</Description>
+		<Location file="BATTLE_BIN" offset="12EA90">
+			D1560608
+			00000000
+			03006290	<!-- Load Ability Flags 1 -->
+			00000000
+			04004230
+			04004014	<!-- Branch if Weapon Element -->
+			00000000
+			07006290	<!-- Load Ability Element -->
+			1D570608	<!-- Jump Back and Save Element -->
+			00000000
+			21101502
+			8C194290	<!-- Load Unit's Battle ID -->
+			00000000
+			C0100200	<!-- ID * 8 -->
+			21100202
+			7D174290	<!-- Load Weapon Element -->
+			1D570608	<!-- Jump Back and Save Element -->
+			00000000
+			01000292	<!-- Load Ability CT -->
+			00000000
+			4A570608	<!-- Jump Back and Save CT -->
+			01004224	<!-- CT + 1 -->
+			B45C2390	<!-- Load Action Menu (for another routine) -->
+			00000000
+			F7FF6224	<!-- Action Menu - 9 -->
+			0200422C
+			02004010	<!-- Branch if not Jump or Charge -->
+			FF000234	<!-- r2 = ff -->
+			00004334	<!-- r3 = r2 -->
+			577A0608	<!-- Back to other routine -->
+			00000000
+			00000000
+			00000000
+			00000000
+			00000000
+			00000000
+			00000000
+			00000000
+			00000000
+			00000000
+			00000000
+			00000000
+			00000000
+			00000000
+			00000000
+			38004392	<!-- Load Unit's Speed -->
+			32000234	<!-- r2 = 50 -->
+			1A004300	<!-- 50 / SP -->
+			12180000
+			00000000
+		</Location>
+		<Location file="BATTLE_BIN" offset="12EC70">
+			A6560608	<!-- Jump to Weapon Elemental -->
+			00000000
+		</Location>
+		<Location file="BATTLE_BIN" offset="12ED0C">
+			92004392	<!-- Load Unit's Support set 4 -->
+			00000000
+			08006230	<!-- Check if Short Charge -->
+			06004010	<!-- Branch if False -->
+			04006230	<!-- Check if Non-Charge -->
+			B6560608	<!-- Jump to Load CT + 1 -->
+			00000000
+		</Location>
+	</Patch>
+</Patches>
