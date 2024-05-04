@@ -1,0 +1,7 @@
+# Rare Poach Chance is 50%
+
+1256e8@BATTLE.BIN: 80
+
+VALIDATION
+
+1256e8@BATTLE.BIN: 1f

@@ -1,11 +1,15 @@
 from collections import defaultdict
 from difflib import SequenceMatcher
-from os import path
+from os import path, environ
 from sys import argv
 from xml.etree import ElementTree
+import binascii
+import pprint
 
 from .tablereader import tblpath, get_open_file
 
+
+DEBUG = environ.get('DEBUG')
 alt_filenames = {}
 
 try:
@@ -180,7 +184,11 @@ def patch_patch(directory, patchdict, verify=False):
         filename = path.join(directory, location['file'])
         to_patch = get_open_file(filename)
         to_patch.seek(offset)
-
+        if DEBUG:
+            print("Patching %s at %s with data: %s" % (filename, hex(offset), binascii.hexlify(to_write)))
+            patched_data = to_patch.read(length)
+            to_patch.seek(offset)
+            print("Current data in %s at %s is: %s" % (filename, hex(offset), binascii.hexlify(patched_data)))
         if verify:
             patched_data = to_patch.read(length)
             if patched_data != to_write:
@@ -199,8 +207,16 @@ def patch_patch(directory, patchdict, verify=False):
                         to_write_var = (to_write_var[:middle] + data +
                                         to_write_var[middle+varlength:])
                 if patched_data != to_write_var:
+                    pprint.pp(patchdict)
+                    pprint.pp(to_patch)
+                    print("Patched data: %s To Write Data %s" % (str(patched_data), binascii.hexlify(to_write_var)) )
                     raise Exception("Verification failed: %s %s"
                                     % (patchdict['name'], location['offset']))
 
         if not verify:
             to_patch.write(to_write)
+            to_patch.flush()
+            if DEBUG:
+                to_patch.seek(offset)
+                patched_data = to_patch.read(length)
+                print("After write: Current data in %s at %s is: %s" % (filename, hex(offset), binascii.hexlify(patched_data)))

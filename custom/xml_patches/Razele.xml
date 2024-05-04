@@ -493,7 +493,7 @@
   <Patch name="No monster breeding">
     <Location file="WORLD_WORLD_BIN" offset="045b6e">42</Location>
   </Patch>
-  <Patch name="Mighty sword has XX% chance to break equipment">
+  <Patch name="Mighty sword always does damage and still has 100% chance to break equipment">
     <Description>
       This makes it so that the mighty swordskills have a % chance to break equipment, but always function as normal damage swordskills. Maintenance prevents item breakage, but not damage. If you want Maintenance to prevent damage, change 0C to 26 at 122BA4.  Change "XX" to whatever chance to break you want. I also changed the damage formula to (WP+Y)*PA like the other swordskills, and divided the damage by 2 to prevent roflstomping. If you don't want this, change the 42100200 to 00000000 at 122C04.
     </Description>    
@@ -506,7 +506,9 @@
       64000434
       B63B060C
     </Location>
-    <Variable name="XX" file="BATTLE_BIN" default="64" offset="122BB0" />
+    <Location file="BATTLE_BIN" offset="122BB0">
+      64
+    </Location>
     <Location file="BATTLE_BIN" offset="122BB1">
       000534
     </Location>

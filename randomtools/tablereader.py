@@ -1,8 +1,10 @@
 from .psx_file_extractor import FileManager, SANDBOX_PATH
 from .utils import (read_multi, write_multi, classproperty,
                     random, md5hash, cached_property, clached_property)
+import binascii
+import pprint
 from functools import total_ordering
-from os import path
+from os import path, environ
 from hashlib import md5
 from sys import stdout
 import string
@@ -20,6 +22,8 @@ tblpath = path.join(head, tblpath)
 
 addresses = lambda: None
 names = lambda: None
+
+DEBUG = environ.get('DEBUG')
 
 MASTER_FILENAME = "master.txt"
 TABLE_SPECS = {}
@@ -325,8 +329,8 @@ def write_patch(outfile, patchfilename, noverify=None, force=False):
             if patchdict is validation:
                 validate = f.read(len(code))
                 if validate != code[:len(validate)]:
-                    error = ('Patch %s-%x did not pass validation.'
-                             % (patchfilename, address))
+                    error = ('Patch %s-%x did not pass validation (value: %s).'
+                             % (patchfilename, address, binascii.hexlify(validate)))
                     if noverify:
                         print('WARNING: %s' % error)
                     else:
@@ -419,7 +423,8 @@ def verify_patches(outfile):
             written = f.read(len(code))
             if code != written:
                 raise Exception(
-                    "Patch %x conflicts with modified data." % address)
+                    "Patch %x conflicts with modified data. Filename: %s PatchFile: %s Data: %s Val: %s" % 
+                    (address, outfile, patchfilename, binascii.hexlify(written), validation))
 
 
 def get_activated_patches():
@@ -1130,6 +1135,8 @@ class TableObject(object):
 
     @classmethod
     def write_all(cls, filename):
+        if DEBUG:
+            print("Writing %s... Filename %s" % (cls.__name__, filename))
         if cls.specs.pointedpoint1 or not (
                 cls.specs.grouped or cls.specs.pointed or cls.specs.delimit):
             for o in cls.every:

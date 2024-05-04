@@ -58,3 +58,5 @@ $formfacepalettes       names_formfacepalettes.txt
 .option                 murond_exit_patch.txt
 .option                 automash_dialogue.txt
 .patch                  patch_dismiss_guests.txt
+.patch                  patch_deep_dungeon_light.txt
+.patch                  patch_poach_chance.txt

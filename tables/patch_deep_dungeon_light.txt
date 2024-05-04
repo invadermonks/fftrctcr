@@ -1,0 +1,39 @@
+# All your Deep Dungeon maps will start fully lit, and stay that way
+
+44@MAP/MAP105.GNS: fd
+30@MAP/MAP106.GNS: 5a
+30@MAP/MAP107.GNS: b9
+30@MAP/MAP108.GNS: 19
+30@MAP/MAP109.GNS: 7a
+30@MAP/MAP110.GNS: d9
+30@MAP/MAP111.GNS: 36
+30@MAP/MAP112.GNS: 95
+30@MAP/MAP113.GNS: f3
+30@MAP/MAP114.GNS: 54
+
+# Fixes for map glitched second level and crashes https://ffhacktics.com/smf/index.php?topic=12268.msg226249#msg226249 
+
+49@MAP/MAP105.GNS: 18
+35@MAP/MAP112.GNS: 18
+
+# Fix to prevent map from updating when a crystal is dropped
+
+9d84@BATTLE.BIN: 00 00 02 34
+
+VALIDATION
+
+44@MAP/MAP105.GNS: e6
+30@MAP/MAP106.GNS: 4e
+30@MAP/MAP107.GNS: ad
+30@MAP/MAP108.GNS: 0d
+30@MAP/MAP109.GNS: 6e
+30@MAP/MAP110.GNS: cd
+30@MAP/MAP111.GNS: 2a
+30@MAP/MAP112.GNS: 8b
+30@MAP/MAP113.GNS: e7
+30@MAP/MAP114.GNS: 48
+
+49@MAP/MAP105.GNS: 70
+35@MAP/MAP112.GNS: 08
+
+9d84@BATTLE.BIN: 1a 38 02 0c
