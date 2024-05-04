@@ -44,19 +44,19 @@
 02B Demi 2
 02C Meteor
 02D Sanguine Sword
-02E Blind
+02E Blind (Oracle)
 02F Spell Absorb
 030 Life Drain
 031 Pray Faith
 032 Doubt Faith
-033 Zombie
+033 Zombie (Oracle)
 034 Silence Song
 035 Blind Rage
 036 Foxbird
 037 Confusion Song
 038 Dispel Magic
 039 Paralyze
-03A Sleep
+03A Sleep (Oracle)
 03B Petrify
 03C Moogle
 03D Shiva
@@ -74,7 +74,7 @@
 049 Lich
 04A Cyclops
 04B Zodiac
-04C Asura
+04C Asura (Samurai)
 04D Koutetsu
 04E Bizen Boat
 04F Murasame
@@ -125,7 +125,7 @@
 07C Insult
 07D Mimic Daravon
 07E Pitfall
-07F Water Ball
+07F Water Ball (Geomancy)
 080 Hell Ivy
 081 Carve Model
 082 Local Quake
@@ -145,14 +145,14 @@
 090 Power Break
 091 Mind Break
 092 Accumulate
-093 Dash
+093 Dash (Squire)
 094 Throw Stone
 095 Heal
 096 Yell
 097 Cheer Up
 098 Wish
 099 Scream
-09A Ultima
+09A Ultima (Ramza)
 09B Stasis Sword
 09C Split Punch
 09D Crush Punch
@@ -168,7 +168,7 @@
 0A7 Deathspell 2
 0A8 Galaxy Stop
 0A9 Heaven Thunder
-0AA Asura
+0AA Asura (Rafa)
 0AB Diamond Sword
 0AC Hydragon Pit
 0AD Space Storage
@@ -183,7 +183,7 @@
 0B6 Shadow Stitch
 0B7 Stop Bracelet
 0B8 (blank)
-0B9 Shock
+0B9 Shock (?)
 0BA Difference
 0BB Seal
 0BC Chicken Race
@@ -200,16 +200,16 @@
 0C7 Mind Ruin
 0C8 Blood Suck
 0C9 Allure
-0CA Bio
-0CB Bio
-0CC Bio
-0CD Bio 2
-0CE Bio 2
-0CF Bio 2
-0D0 Bio 2
-0D1 Bio 3
-0D2 Bio 3
-0D3 Bio 3
+0CA Bio (Darkness)
+0CB Bio (Poison)
+0CC Bio (Oil)
+0CD Bio 2 (Frog)
+0CE Bio 2 (Slow)
+0CF Bio 2 (Silence)
+0D0 Bio 2 (Petrify)
+0D1 Bio 3 (Undead)
+0D2 Bio 3 (Dead)
+0D3 Bio 3 (Petrify)
 0D4 Mbarrier
 0D5 Leg Aim
 0D6 Arm Aim
@@ -227,34 +227,34 @@
 0E2 Small Bomb
 0E3 Confuse 2
 0E4 Sleep 2
-0E5 Ultima
+0E5 Ultima (Altima1)
 0E6 All-ultima
 0E7 Mute
 0E8 Despair 2
 0E9 Return 2
-0EA Blind
+0EA Blind (Beowulf)
 0EB Aspel
 0EC Drain
 0ED Faith
 0EE Innocent
-0EF Zombie
+0EF Zombie (Beowulf)
 0F0 Silence
 0F1 Berserk
 0F2 Chicken
 0F3 Confuse
 0F4 Despair
 0F5 Don't Act
-0F6 Sleep
+0F6 Sleep (Beowulf)
 0F7 Break
-0F8 Ice Bracelet
-0F9 Fire Bracelet
-0FA Thnder Brcelet
+0F8 Ice Bracelet (Reis)
+0F9 Fire Bracelet (Reis)
+0FA Thnder Brcelet (Reis)
 0FB Dragon Tame
 0FC Dragon Care
 0FD Dragon PowerUp
 0FE Dragon LevelUp
 0FF Holy Bracelet
-100 Shock
+100 Shock (Cloud)
 101 Braver
 102 Cross-slash
 103 Blade Beam
@@ -333,11 +333,11 @@
 14C Hurricane
 14D Ulmaguest
 14E Giga Flare
-14F Dash
+14F Dash (Monster)
 150 Tail Swing
-151 Ice Bracelet
-152 Fire Bracelet
-153 Thnder Brcelet
+151 Ice Bracelet (Monster)
+152 Fire Bracelet (Monster)
+153 Thnder Brcelet (Monster)
 154 Triple Attack
 155 Triple Brcelet
 156 Triple Thunder

@@ -3744,10 +3744,54 @@ class EventObject(TableObject):
                              + [self.instructions[-1]])
         assert self.instructions[-1] == (0xdb, [])
 
+    def randomize_balk_status(self):
+        if self.index != 354:
+            return
+        # Randomize the status Balk inflicts in Bed Desert fight
+        # Requires Event Instructions Upgrade v1.377 or the status will be null
+        balk_event = self
+        # https://ffhacktics.com/wiki/InflictStatus
+        # Defending, Undead, Silence, Darkness, Critical, Transparent, Reraise, Float, 
+        # Oil, Slow, Haste, Shell, Protect, Regen, Death Sentence, Reflect, Innocent, Faith
+        MILD_EVENT_STATUSES = [0x81, 0x84, 0x8b, 0x8d, 0x90, 0x94, 0x95, 0x96, 0x97, 
+                            0x9a, 0x9b, 0x9c, 0x9d, 0x9e, 0xa0, 0xa1,  0xa6, 0xa7]
+        # Poison/Critical, Dead, Blood Suck, Confusion, Petrify, Frog, Chicken, Berserk, 
+        # Stop, Poison, Don't Act, Don't Move, Sleep, Charm
+        BAD_EVENT_STATUSES = [0x02, 0x85, 0x8a, 0x8c, 0x8f, 0x91, 0x92, 0x93, 0x99, 
+                            0x9f, 0xa2, 0xa3, 0xa4, 0xa5]
+        BALK_INFLICT_EVENT_RAMZA = 148
+        BALK_INFLICT_EVENTS_PARTY = [ 150, 152, 154, 156, 158 ]
+        BALK_INFLICT_EVENTS_RAMZA_AND_PARTY = [ 148, 150, 152, 154, 156, 158 ]
+
+        choice = random.randint(1, 9)
+        if choice <= 3: # 33% 
+            # All party members get the same random mild status
+            status = random.choice(MILD_EVENT_STATUSES)
+            for i in BALK_INFLICT_EVENTS_RAMZA_AND_PARTY:
+                balk_event.instructions[i][1][2] = status
+        elif choice <= 6: # 33%
+            # All party members get different random mild statuses
+            for i in BALK_INFLICT_EVENTS_RAMZA_AND_PARTY:
+                balk_event.instructions[i][1][2] = random.choice(MILD_EVENT_STATUSES)
+        elif choice <= 8: # 22%
+            # Ramza is cursed, the rest get different random mild/bad statuses
+            balk_event.instructions[BALK_INFLICT_EVENT_RAMZA][1][2] = 0x89
+            for i in BALK_INFLICT_EVENTS_PARTY:
+                balk_event.instructions[i][1][2] = random.choice(MILD_EVENT_STATUSES + BAD_EVENT_STATUSES)
+        else: # 11%
+            # Ramza is transparent, the rest get the same mild/bad status
+            balk_event.instructions[BALK_INFLICT_EVENT_RAMZA][1][2] = 0x94
+            status = random.choice(MILD_EVENT_STATUSES + BAD_EVENT_STATUSES)
+            for i in BALK_INFLICT_EVENTS_PARTY:
+                balk_event.instructions[i][1][2] = status
+
+        # TODO go through messages and change "Poison!?" to the chosen status
+
     def cleanup(self):
         if 'automash_dialogue.txt' in get_activated_patches():
             self.automash()
         self.setup_chocobo_knights()
+        self.randomize_balk_status()
 
     def write_data(self, filename=None, pointer=None):
         if self.old_text_offset == 0xf2f2f2f2 and self.messages:
@@ -6862,42 +6906,6 @@ def replace_ending():
                 chosen = random.choice(indexes)
                 indexes.remove(chosen)
             chemist.skillset.set_actions(indexes + [AbilityObject.PHOENIX_DOWN])
-
-    # Randomize the status Balk inflicts in Bed Desert fight
-    # Requires Event Instructions Upgrade v1.377 or the status will be null
-    balk_event = EventObject.get(354)
-    # https://ffhacktics.com/wiki/InflictStatus
-    # Defending, Undead, Silence, Darkness, Critical, Transparent, Reraise, Float, Oil, Slow, Haste, Shell, Protect, Regen, Death Sentence, Reflect, Innocent, Faith
-    MILD_EVENT_STATUSES = [0x81, 0x84, 0x8b, 0x8d, 0x90, 0x94, 0x95, 0x96, 0x97, 0x9a, 0x9b, 0x9c, 0x9d, 0x9e, 0xa0, 0xa1,  0xa6, 0xa7] #todo add 9f and 02
-    # Poison/Critical, Dead, Blood Suck, Confusion, Petrify, Frog, Chicken, Berserk, Stop, Poison, Don't Act, Don't Move, Sleep, Charm
-    BAD_EVENT_STATUSES = [0x02, 0x85, 0x8a, 0x8c, 0x8f, 0x91, 0x92, 0x93, 0x99, 0x9f, 0xa2, 0xa3, 0xa4, 0xa5]
-    BALK_INFLICT_EVENT_RAMZA = 148
-    BALK_INFLICT_EVENTS_PARTY = [ 150, 152, 154, 156, 158 ]
-    BALK_INFLICT_EVENTS_RAMZA_AND_PARTY = [ 148, 150, 152, 154, 156, 158 ]
-
-    choice = random.randint(1, 9)
-    if choice <= 3: # 33% 
-        # All party members get the same random mild status
-        status = random.choice(MILD_EVENT_STATUSES)
-        for i in BALK_INFLICT_EVENTS_RAMZA_AND_PARTY:
-            balk_event.instructions[i][1][2] = status
-    elif choice <= 6: # 33%
-        # All party members get the differnt random mild status
-        for i in BALK_INFLICT_EVENTS_RAMZA_AND_PARTY:
-            balk_event.instructions[i][1][2] = random.choice(MILD_EVENT_STATUSES)
-    elif choice <= 8: # 22%
-        # Ramza is cursed, the rest get random mild/bad status
-        balk_event.instructions[BALK_INFLICT_EVENT_RAMZA][1][2] = 0x89
-        for i in BALK_INFLICT_EVENTS_PARTY:
-            balk_event.instructions[i][1][2] = random.choice(MILD_EVENT_STATUSES + BAD_EVENT_STATUSES)
-    else: # 11%
-        # Ramza is transparent, the rest get the same mild/bad status
-        balk_event.instructions[BALK_INFLICT_EVENT_RAMZA][1][2] = 0x94
-        status = random.choice(MILD_EVENT_STATUSES + BAD_EVENT_STATUSES)
-        for i in BALK_INFLICT_EVENTS_PARTY:
-            balk_event.instructions[i][1][2] = status
-
-    # TODO go through messages and change "Poison!?" to the chosen status
 
     knives = range(1, 0x0B)
     knives = [k for k in ItemObject.ranked if k.index in knives]
