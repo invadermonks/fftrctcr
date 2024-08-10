@@ -3962,7 +3962,7 @@ class GNSObject(MapMixin):
     ALTERNATE_MAP_OPTIONS = {}
     WILDCARD_MAP_OPTIONS = []
 
-    filename_matcher = re.compile('^MAP(\d\d\d)\.(GNS|(\d+))')
+    filename_matcher = re.compile(r'^MAP(\d\d\d)\.(GNS|(\d+))')
     for parent, children, filenames in sorted(walk(CUSTOM_MAP_PATH)):
         indexes = set()
         filepaths = set()

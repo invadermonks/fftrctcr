@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Echo Git Context
@@ -38,27 +38,28 @@ jobs:
       - name: Extract version number
         id: extract_version
         run: |
-          VERSION=$(grep -oP "VERSION = '\K[0-9.]+[a-z]?" randomizer.py)
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          $version = (Get-Content -Path randomizer.py | Select-String -Pattern 'VERSION = ''\K[0-9.]+[a-z]?' -AllMatches).Matches.Value
+          echo "VERSION=$version" >> $env:GITHUB_ENV
 
       - name: Build with PyInstaller
         run: pyinstaller randomizer.spec
 
-      - name: Package into a 7z file
+      - name: Package into a self-extracting exe using 7z
         run: |
-          mkdir -p deploy/package
-          cp -r dist/fftrctcr.exe custom/ deploy/package/
-          cd deploy
-          7z a -t7z -mx=9 -ms=on fftrctcr_v${{ env.VERSION }}.7z package/*
+          mkdir deploy
+          mkdir deploy/fftrctcr_v${{ env.VERSION }}
+          Copy-Item -Recurse create_seed_fftrctcr.bat dist\fftrctcr.exe custom\ deploy\fftrctcr_v${{ env.VERSION }}\
+          cd deploy\fftrctcr_v${{ env.VERSION }}
+          7z a sfx7z.sfx -mx=9 -ms=on ..\fftrctcr_v${{ env.VERSION }}.exe *
 
       - name: Create/Update Release
         if: always()
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: deploy/fftrctcr_v${{ env.VERSION }}.7z
+          file: deploy/fftrctcr_v${{ env.VERSION }}.exe
           release_name: "FINAL FANTASY TACTICS Rumble: Chaos: >>The Crashdown<< REMAKE ${{ env.VERSION }}"
           prerelease: false
           tag: v${{ env.VERSION }}
           overwrite: true
-          body: "fftrctcr version {{ env.VERSION }}"
+          body: "fftrctcr version ${{ env.VERSION }}"
