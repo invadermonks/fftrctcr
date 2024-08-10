@@ -49,7 +49,7 @@ jobs:
         run: |
           mkdir deploy
           mkdir deploy/fftrctcr_v${{ env.VERSION }}
-          Copy-Item -Recurse create_seed_fftrctcr.bat dist\fftrctcr.exe custom\ deploy\fftrctcr_v${{ env.VERSION }}\
+          Copy-Item -Recurse -Path dist\fftrctcr.exe, custom\, create_seed_fftrctcr.bat -Destination deploy\fftrctcr_v${{ env.VERSION }}\
           cd deploy\fftrctcr_v${{ env.VERSION }}
           7z a sfx7z.sfx -mx=9 -ms=on ..\fftrctcr_v${{ env.VERSION }}.exe *
 
