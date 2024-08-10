@@ -1,7 +1,7 @@
 # FINAL FANTASY TACTICS Rumble: Chaos: >>The Crashdown<< REMAKE
 
-**Version:** 4.04i  
-**Date:** April 30, 2024  
+**Version:** 4.05i  
+**Date:** August 10, 2024  
 **URL:** [Latest Release](https://github.com/invadermonks/fftrctcr/releases/latest)
 
 ## How to Use

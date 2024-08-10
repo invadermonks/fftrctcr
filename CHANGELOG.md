@@ -1,3 +1,37 @@
+# TODO: Reversed X/Y on NOGIAS in log, check vanilla move finds
+
+# fix stage highlights with new GaneshaDX
+
+# check golgorand entd
+
+#
+
+## Version 4.05i Changelog
+
+### Features
+
+- The poison grenade Balk throws at the party before the Bed Desert fight is now randomized
+
+### Quality of Life
+
+- The chance of receiving the rare item from Poach has been increased from 12.5% to 50%
+- The Deep Dungeon maps are now always lit
+- Move-Find Item and Secret Hunt are now guaranteed to be on a generic class skillset
+- Chemist is now guaranteed to have Phoenix Down on their ability list
+- Seed generation script `create_seed_fftrctcr.bat` has been updated to prompt for settings and to retry on failure
+
+### Bug Fixes
+
+- Capped ability mp cost at 99 since FFT cannot display mp costs above 99
+- Oil now properly multiplies received fire damage by 2x (this was a vanilla FFT bug fixed in the PSP version)
+- The AI will use Protect/Shell when above 50% health now
+- The AI now treats Throw Item range as 4 instead of their MV value
+- The AI now properly accounts for skills that inherit the equipped weapon element
+
+### Balancing
+
+- Set a minimum value for lucavi level based on difficulty value when difficulty value is > 1.0 (Altima 2 will always be level 99 at difficulty >= 5.0)
+
 ## Version 4.04i Changelog
 
 ### Bug Fixes
@@ -6,7 +40,7 @@
 
 ### Balancing
 
-- Set a minimum value for lucavi health based on difficulty value when difficulty value is > 1.0 (Altima 2 will have maximum HP above difficulty 5.0)
+- Set a minimum value for lucavi health based on difficulty value when difficulty value is > 1.0 (Altima 2 will have an HP multiplier of 255 and growth of 1 at difficulty > 5.0)
 
 ## Version 4.03i Changelog
 

@@ -1,0 +1,91 @@
+name: Build, Deploy, and Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Echo Git Context
+        run: |
+          echo "event_name: ${{ github.event_name }}"
+          echo "ref: ${{ github.ref }}"
+          echo "ref_name: ${{ github.ref_name }}"
+          echo "base_ref: ${{ github.base_ref }}"
+          echo "head_ref: ${{ github.head_ref }}"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x" # Replace with your Python version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+
+      - name: Extract version number
+        id: extract_version
+        run: |
+          VERSION=$(grep -oP "VERSION = '\K[0-9.]+[a-z]?" randomizer.py)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Build with PyInstaller
+        run: pyinstaller randomizer.spec
+
+      - name: Package artifacts into a zip file
+        run: |
+          mkdir -p deploy/package
+          cp -r dist/fftrctcr.exe custom/ deploy/package/
+          cd deploy
+          zip -r fftrctcr_v${{ env.VERSION }}.zip package
+
+      - name: Upload build artifacts
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: deploy/fftrctcr_v${{ env.VERSION }}.zip
+
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+          path: deploy/
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.VERSION }}
+          release_name: Release v${{ env.VERSION }}
+          body: |
+            Release of version ${{ env.VERSION }}.
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Assets
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: deploy/fftrctcr_v${{ env.VERSION }}.zip
+          asset_name: fftrctcr_v${{ env.VERSION }}.zip
+          asset_content_type: application/zip

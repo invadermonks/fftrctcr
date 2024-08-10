@@ -16,13 +16,18 @@ if not exist fftrctcr.exe (
 REM SET random_degree=0.8
 REM SET difficulty_multiplier=1.3
 REM SET "seed_dir=..\..\seeds"
+SET flags=afijmprstuwy
 
 if not defined random_degree (
-  set /p random_degree="Enter the randomness degree (e.g., 0.8): "
+  set /p random_degree="Enter the randomness degree [range 0 to 1.0] (e.g., 0.8): "
 )
 
 if not defined difficulty_multiplier (
   set /p difficulty_multiplier="Enter the difficulty multiplier (e.g., 1.3):  "
+)
+
+if not defined flags (
+  set /p flags="Enter the flags (e.g., afijmprstuwy):  "
 )
 
 :gen_seed
@@ -30,7 +35,7 @@ if not defined difficulty_multiplier (
 FOR /F "usebackq tokens=* delims=" %%i IN (`powershell -command "[int](Get-Date).ToUniversalTime().Subtract([datetime]'1970-01-01').TotalSeconds"`) DO SET TIMESTAMP=%%i
 
 REM sourcefile, flags, seed, random_degree, difficulty_multiplier
-fftrctcr.exe fft.bin afijmprstuwy "%TIMESTAMP%" %random_degree% %difficulty_multiplier%
+fftrctcr.exe fft.bin "%flags%" "%TIMESTAMP%" %random_degree% %difficulty_multiplier%
 
 if not exist fftr_spoiler_%TIMESTAMP%.txt (    
     if exist fft.afijmprstuwy.%TIMESTAMP%.bin (

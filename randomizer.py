@@ -27,7 +27,7 @@ import pprint
 import re
 
 
-VERSION = '4.04i'
+VERSION = '4.05i'
 ALL_OBJECTS = None
 DEBUG = environ.get('DEBUG')
 
@@ -333,15 +333,15 @@ class JobObject(TableObject):
     INNOCENT_STATUS =       0x4000000000
     FAITH_STATUS =          0x8000000000
 
-    VALID_INNATE_STATUSES = ( UNDEAD_STATUS | DARKNESS_STATUS |
+    VALID_INNATE_STATUSES = ( DEFENDING_STATUS | UNDEAD_STATUS | DARKNESS_STATUS |
                                CRITICAL_STATUS | FLOAT_STATUS | OIL_STATUS | 
                                HASTE_STATUS | SHELL_STATUS | PROTECT_STATUS | REGEN_STATUS |
                                REFLECT_STATUS | INNOCENT_STATUS | FAITH_STATUS )
     
     VALID_START_STATUSES =  ( VALID_INNATE_STATUSES | TRANSPARENT_STATUS | RERAISE_STATUS | POISON_STATUS | SLOW_STATUS )
 
-    INFLICT_ONLY_STATUSES = ( STOP_STATUS | DONT_ACT_STATUS | DONT_MOVE_STATUS | SLEEP_STATUS | SILENCE_STATUS |
-                               FROG_STATUS | CONFUSION_STATUS | BERSERK_STATUS | CHARM_STATUS | UNKNOWN_STATUS_2 | DEAD_STATUS )
+    INFLICT_ONLY_STATUSES = ( STOP_STATUS | DONT_ACT_STATUS | DONT_MOVE_STATUS | SLEEP_STATUS | SILENCE_STATUS | DEATH_SENTENCE_STATUS |
+                               FROG_STATUS | CONFUSION_STATUS | PETRIFY_STATUS | BERSERK_STATUS | CHARM_STATUS | UNKNOWN_STATUS_2 | DEAD_STATUS )
 
     VALID_INFLICT_STATUSES = ( VALID_START_STATUSES | INFLICT_ONLY_STATUSES )
 
@@ -520,6 +520,10 @@ class JobObject(TableObject):
     @property
     def is_generic(self):
         return JobObject.SQUIRE_INDEX <= self.index <= JobObject.MIME_INDEX
+    
+    @property
+    def is_generic_no_mime(self):
+        return JobObject.SQUIRE_INDEX <= self.index < JobObject.MIME_INDEX
 
     @property
     def is_dead(self):
@@ -1314,6 +1318,7 @@ class SkillsetObject(TableObject):
     MATH_SKILLSETS = {0xa, 0xb, 0xc, 0x10}
     MATH = 0x15
     CHAOS = 0x7c
+    MIME_SKILLSET = 0x18
     BANNED_ANYTHING = {0x18}  # mimic
     BANNED_SKILLSET_SHUFFLE = {0, 1, 2, 3, 6, 8, 0x11, 0x12, 0x13, 0x14, 0x15,
                                0x18, 0x34, 0x38, 0x39, 0x3b, 0x3e, 0x9c, 0xa1
@@ -1349,6 +1354,13 @@ class SkillsetObject(TableObject):
                 and self.index == self.TLW_DARK_KNIGHT_CANON):
             return True
         return 5 <= self.index <= 0x18
+    
+    @property
+    def is_generic_no_mime(self):
+        if (get_global_label() == 'FFT_TLW'
+                and self.index == self.TLW_DARK_KNIGHT_CANON):
+            return True
+        return 5 <= self.index < 0x18
 
     @cached_property
     def is_recruitable(self):
@@ -1561,7 +1573,7 @@ class SkillsetObject(TableObject):
                        if sso.is_generic
                        and sso.index not in SkillsetObject.BANNED_ANYTHING]
         is_generic = lambda sso: isinstance(sso, int)
-        you_get_one = False
+        you_get_one = True
         for rsm in rsms:
             while True:
                 chosen = random.choice(candidates)
@@ -6860,7 +6872,7 @@ def replace_ending():
 
     if delita.job.immune_status & JobObject.INVITE_STATUS:
         delita.job.immune_status ^= JobObject.INVITE_STATUS
-    generic_ss_has_invite = [ss for ss in SkillsetObject.every if ss.is_generic
+    generic_ss_has_invite = [ss for ss in SkillsetObject.every if ss.is_generic_no_mime
                          and AbilityObject.INVITATION in ss.action_indexes]
     if not generic_ss_has_invite:
         skillset = SkillsetObject.get(ramza.job.skillset_index)
@@ -6871,13 +6883,13 @@ def replace_ending():
                 indexes.remove(chosen)
             skillset.set_actions(indexes + [AbilityObject.INVITATION])
 
-    generic_skillsets = [ss for ss in SkillsetObject.every if ss.is_generic
+    generic_skillsets = [ss for ss in SkillsetObject.every if ss.is_generic_no_mime
                          and len(ss.rsm_indexes) < 4]
     if len(generic_skillsets) < 3:
-        generic_skillsets = [ss for ss in SkillsetObject.every if ss.is_generic]
+        generic_skillsets = [ss for ss in SkillsetObject.every if ss.is_generic_no_mime]
 
-    generic_ss_has_secret_hunt = [ss for ss in SkillsetObject.every if ss.is_generic
-                         and AbilityObject.SECRET_HUNT in ss.action_indexes]
+    generic_ss_has_secret_hunt = [ss for ss in SkillsetObject.every if ss.is_generic_no_mime
+                         and AbilityObject.SECRET_HUNT in ss.rsm_indexes]
     if not generic_ss_has_secret_hunt:
         skillset = random.choice(generic_skillsets)
         indexes = [i for i in skillset.rsm_indexes if i > 0]
@@ -6887,11 +6899,24 @@ def replace_ending():
                 indexes.remove(chosen)
             skillset.set_rsms(indexes + [AbilityObject.SECRET_HUNT])
 
-    generic_ss_has_move_find_item = [ss for ss in SkillsetObject.every if ss.is_generic
-                         and AbilityObject.MOVE_FIND_ITEM in ss.action_indexes]
+    generic_ss_has_noncharge_or_teleport = [ss for ss in SkillsetObject.every if ss.is_generic_no_mime
+                         and any(d in ss.rsm_indexes for d in AbilityObject.DUMMIED_ABILITIES)]
+    if not generic_ss_has_noncharge_or_teleport:
+        skillset = random.choice(generic_skillsets)
+        indexes = [i for i in skillset.rsm_indexes if i > 0]
+        #print(f"adding {AbilityObject.DUMMIED_ABILITIES} to {skillset}")
+        if not any(d in indexes for d in AbilityObject.DUMMIED_ABILITIES):
+            while len(indexes) >= 6:
+                chosen = random.choice(indexes)
+                indexes.remove(chosen)
+            skillset.set_rsms([random.choice(AbilityObject.DUMMIED_ABILITIES)] + indexes)
+
+    generic_ss_has_move_find_item = [ss for ss in SkillsetObject.every if ss.is_generic_no_mime
+                         and AbilityObject.MOVE_FIND_ITEM in ss.rsm_indexes]
     if not generic_ss_has_move_find_item:
         skillset = random.choice(generic_skillsets)
         indexes = [i for i in skillset.rsm_indexes if i > 0]
+        #print(f"adding mf {AbilityObject.MOVE_FIND_ITEM} to {skillset}")
         if AbilityObject.MOVE_FIND_ITEM not in indexes:
             while len(indexes) >= 6:
                 chosen = random.choice(indexes)
@@ -6905,7 +6930,7 @@ def replace_ending():
             while len(indexes) >= 16:
                 chosen = random.choice(indexes)
                 indexes.remove(chosen)
-            chemist.skillset.set_actions(indexes + [AbilityObject.PHOENIX_DOWN])
+            chemist.skillset.set_actions([AbilityObject.PHOENIX_DOWN] + indexes)
 
     knives = range(1, 0x0B)
     knives = [k for k in ItemObject.ranked if k.index in knives]
