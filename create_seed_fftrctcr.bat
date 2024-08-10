@@ -19,11 +19,11 @@ REM SET "seed_dir=..\..\seeds"
 SET flags=afijmprstuwy
 
 if not defined random_degree (
-  set /p random_degree="Enter the randomness degree [range 0 to 1.0] (e.g., 0.8): "
+  set /p random_degree="Enter the randomness degree [range 0 to 1.0] (default 0.5): "
 )
 
 if not defined difficulty_multiplier (
-  set /p difficulty_multiplier="Enter the difficulty multiplier (e.g., 1.3):  "
+  set /p difficulty_multiplier="Enter the difficulty multiplier (default 1.0):  "
 )
 
 if not defined flags (
