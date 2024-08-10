@@ -51,7 +51,7 @@ jobs:
           mkdir deploy/fftrctcr_v${{ env.VERSION }}
           Copy-Item -Recurse -Path dist\fftrctcr.exe, custom\, create_seed_fftrctcr.bat -Destination deploy\fftrctcr_v${{ env.VERSION }}\
           cd deploy 
-          7z a -sfx -mx=9 -mfb=256 -md=64m -ms=on fftrctcr_v${{ env.VERSION }}.exe fftrctcr_v${{ env.VERSION }}
+          7z a -sfx"c:\program files\7-zip\7z.sfx" -mx=9 -mfb=256 -md=64m -ms=on fftrctcr_v${{ env.VERSION }}.exe fftrctcr_v${{ env.VERSION }}
 
       - name: Create/Update Release
         if: always()
