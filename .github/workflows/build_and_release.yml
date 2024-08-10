@@ -38,7 +38,8 @@ jobs:
       - name: Extract version number
         id: extract_version
         run: |
-          $version = (Get-Content -Path randomizer.py | Select-String -Pattern 'VERSION = ''\K[0-9.]+[a-z]?' -AllMatches).Matches.Value
+          $content = Get-Content -Path randomizer.py
+          $version = ($content | Select-String -Pattern "VERSION = '([0-9.]+[a-z]?)'" -AllMatches).Matches.Groups[1].Value
           echo "VERSION=$version" >> $env:GITHUB_ENV
 
       - name: Build with PyInstaller
